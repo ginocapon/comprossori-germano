@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Face circle -->
+  <circle cx="50" cy="55" r="30" fill="#FFD093"/>
+  <!-- Eyes -->
+  <circle cx="40" cy="52" r="4" fill="#333"/>
+  <circle cx="60" cy="52" r="4" fill="#333"/>
+  <!-- Eye shine -->
+  <circle cx="41.5" cy="50.5" r="1.5" fill="#fff"/>
+  <circle cx="61.5" cy="50.5" r="1.5" fill="#fff"/>
+  <!-- Smile -->
+  <path d="M38 63 Q50 73 62 63" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Cheeks blush -->
+  <ellipse cx="34" cy="62" rx="5" ry="3" fill="#FFB5B5" opacity="0.5"/>
+  <ellipse cx="66" cy="62" rx="5" ry="3" fill="#FFB5B5" opacity="0.5"/>
+  <!-- Hard hat - main -->
+  <ellipse cx="50" cy="38" rx="34" ry="18" fill="#FFD600"/>
+  <!-- Hard hat - brim -->
+  <path d="M14 38 Q14 44 50 44 Q86 44 86 38" fill="#F5C800" stroke="#E6B800" stroke-width="1"/>
+  <!-- Hard hat - top ridge -->
+  <path d="M32 22 Q50 16 68 22" stroke="#E6B800" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Hard hat - dome highlight -->
+  <ellipse cx="45" cy="28" rx="12" ry="6" fill="#FFE44D" opacity="0.6"/>
+  <!-- Ears -->
+  <ellipse cx="22" cy="55" rx="5" ry="7" fill="#FFD093"/>
+  <ellipse cx="78" cy="55" rx="5" ry="7" fill="#FFD093"/>
+</svg>
