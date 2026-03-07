@@ -13,6 +13,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.cronocompressor.it/">
   <meta property="og:image" content="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200">
+  <!-- Preload hero image (LCP) -->
+  <link rel="preload" as="image" href="image/hero-crono.webp" type="image/webp">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -135,7 +137,7 @@
         <a href="contatti.html">Contatti</a>
         <a href="contatti.html" class="nav-cta">Preventivo Gratuito</a>
       </div>
-      <div class="nav-toggle" id="navToggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <div class="nav-toggle" id="navToggle">
         <span></span><span></span><span></span>
       </div>
     </div>
@@ -144,7 +146,7 @@
   <!-- ======== HERO ======== -->
   <section class="hero">
     <div class="hero-bg">
-      <img src="image/hero-crono.webp" alt="Crono Compressor — Compressori industriali">
+      <img src="image/hero-crono.webp" alt="Crono Compressor — Compressori industriali" fetchpriority="high" decoding="async">
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content-full">
@@ -239,7 +241,7 @@
       </div>
       <div class="products-grid">
         <div class="product-card reveal">
-          <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=220&fit=crop" alt="Compressore a vite lubrificato" class="product-card-img" width="400" height="220">
+          <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=220&fit=crop" alt="Compressore a vite lubrificato" class="product-card-img" width="400" height="220" loading="lazy" decoding="async">
           <div class="product-card-body">
             <div class="product-card-category">Compressori Lubrificati</div>
             <h3>Compressori a Vite Lubrificati</h3>
@@ -253,7 +255,7 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=220&fit=crop" alt="Compressore oil-free" class="product-card-img" width="400" height="220">
+          <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=220&fit=crop" alt="Compressore oil-free" class="product-card-img" width="400" height="220" loading="lazy" decoding="async">
           <div class="product-card-body">
             <div class="product-card-category">Oil-Free</div>
             <h3>Compressori Oil-Free</h3>
@@ -267,7 +269,7 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=400&h=220&fit=crop" alt="Essiccatore d'aria" class="product-card-img" width="400" height="220">
+          <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=400&h=220&fit=crop" alt="Essiccatore d'aria" class="product-card-img" width="400" height="220" loading="lazy" decoding="async">
           <div class="product-card-body">
             <div class="product-card-category">Trattamento Aria</div>
             <h3>Essiccatori e Filtri</h3>
@@ -280,7 +282,7 @@
           </div>
         </div>
         <div class="product-card reveal">
-          <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?w=400&h=220&fit=crop" alt="Generatore di corrente industriale" class="product-card-img" width="400" height="220">
+          <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?w=400&h=220&fit=crop" alt="Generatore di corrente industriale" class="product-card-img" width="400" height="220" loading="lazy" decoding="async">
           <div class="product-card-body">
             <div class="product-card-category">Generatori</div>
             <h3>Generatori di Corrente</h3>
@@ -304,7 +306,7 @@
     <div class="container">
       <div class="about-grid reveal">
         <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=500&fit=crop" alt="Marco Ferretti, fondatore Crono Compressor" width="600" height="500">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=500&fit=crop" alt="Marco Ferretti, fondatore Crono Compressor" width="600" height="500" loading="lazy" decoding="async">
           <div class="about-experience-badge">
             <div class="number">50+</div>
             <div class="label">Anni di esperienza</div>
@@ -442,7 +444,7 @@
       </div>
       <div class="blog-grid">
         <a href="blog/manutenzione-compressore-guida.html" class="blog-card reveal">
-          <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=200&fit=crop" alt="Manutenzione compressore" class="blog-card-img" width="400" height="200">
+          <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=200&fit=crop" alt="Manutenzione compressore" class="blog-card-img" width="400" height="200" loading="lazy" decoding="async">
           <div class="blog-card-body">
             <div class="blog-card-meta">
               <span class="category">Manutenzione</span>
@@ -454,7 +456,7 @@
           </div>
         </a>
         <a href="blog/compressore-oil-free-vs-lubrificato.html" class="blog-card reveal">
-          <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?w=400&h=200&fit=crop" alt="Oil-free vs lubrificato" class="blog-card-img" width="400" height="200">
+          <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?w=400&h=200&fit=crop" alt="Oil-free vs lubrificato" class="blog-card-img" width="400" height="200" loading="lazy" decoding="async">
           <div class="blog-card-body">
             <div class="blog-card-meta">
               <span class="category">Guide</span>
@@ -466,7 +468,7 @@
           </div>
         </a>
         <a href="blog/risparmio-energetico-aria-compressa.html" class="blog-card reveal">
-          <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=200&fit=crop" alt="Risparmio energetico" class="blog-card-img" width="400" height="200">
+          <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=200&fit=crop" alt="Risparmio energetico" class="blog-card-img" width="400" height="200" loading="lazy" decoding="async">
           <div class="blog-card-body">
             <div class="blog-card-meta">
               <span class="category">Efficienza</span>
@@ -614,7 +616,7 @@
   <div id="chatbot-window">
     <div class="chatbot-header">
       <div class="chatbot-header-info">
-        <div class="chatbot-avatar"><img src="image/chatbot-avatar.svg" alt="Assistente" width="40" height="40"></div>
+        <div class="chatbot-avatar"><img src="image/chatbot-avatar.svg" alt="Assistente" width="40" height="40" loading="lazy" decoding="async"></div>
         <div>
           <div class="chatbot-name">Crono Assistente</div>
           <div class="chatbot-status"><span class="status-dot"></span> Online</div>
