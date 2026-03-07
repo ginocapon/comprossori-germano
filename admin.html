@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Crono Compressor</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--grigio-50); }
+    .admin-login { display:flex; align-items:center; justify-content:center; min-height:100vh; }
+    .admin-login-card { background:var(--bianco); padding:48px; border-radius:12px; box-shadow:var(--shadow-lg); max-width:400px; width:100%; text-align:center; }
+    .admin-login-card .logo { font-family:var(--font-heading); font-size:1.5rem; font-weight:700; color:var(--blu-scuro); text-transform:uppercase; margin-bottom:8px; }
+    .admin-login-card .logo span { color:var(--arancione); }
+    .tab-btn { padding:10px 20px; border:none; background:transparent; font-family:var(--font-heading); font-size:0.9rem; font-weight:600; cursor:pointer; color:var(--grigio-500); border-bottom:2px solid transparent; text-transform:uppercase; }
+    .tab-btn.active { color:var(--arancione); border-bottom-color:var(--arancione); }
+    .admin-section { display:none; }
+    .admin-section.active { display:block; }
+    .editor-toolbar { display:flex; gap:8px; padding:12px; background:var(--grigio-50); border:1px solid var(--grigio-200); border-bottom:none; border-radius:8px 8px 0 0; flex-wrap:wrap; }
+    .editor-toolbar button { padding:6px 12px; border:1px solid var(--grigio-200); background:var(--bianco); border-radius:4px; cursor:pointer; font-size:0.8rem; }
+    .editor-toolbar button:hover { background:var(--grigio-100); }
+    .editor-area { width:100%; min-height:300px; padding:16px; border:1px solid var(--grigio-200); border-radius:0 0 8px 8px; font-family:var(--font-body); font-size:0.95rem; line-height:1.7; resize:vertical; }
+  </style>
+</head>
+<body>
+  <!-- LOGIN SCREEN -->
+  <div class="admin-login" id="loginScreen">
+    <div class="admin-login-card">
+      <div class="logo">Crono <span>Compressor</span></div>
+      <p style="color:var(--grigio-500); margin-bottom:32px; font-size:0.9rem;">Pannello di Amministrazione</p>
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="loginUser">Username</label>
+          <input type="text" id="loginUser" required placeholder="admin">
+        </div>
+        <div class="form-group">
+          <label for="loginPass">Password</label>
+          <input type="password" id="loginPass" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;"><i class="fas fa-sign-in-alt"></i> Accedi</button>
+      </form>
+      <p style="font-size:0.8rem; color:var(--grigio-300); margin-top:16px;">Demo: admin / admin</p>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD -->
+  <div id="adminPanel" style="display:none;">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="logo">Crono <span>Compressor</span></div>
+      <div class="admin-nav-item active" data-section="dashboard"><i class="fas fa-tachometer-alt" style="width:20px;"></i> Dashboard</div>
+      <div class="admin-nav-item" data-section="prodotti"><i class="fas fa-boxes" style="width:20px;"></i> Prodotti</div>
+      <div class="admin-nav-item" data-section="blog"><i class="fas fa-newspaper" style="width:20px;"></i> Blog / Articoli</div>
+      <div class="admin-nav-item" data-section="landing"><i class="fas fa-rocket" style="width:20px;"></i> Landing Pages</div>
+      <div class="admin-nav-item" data-section="contatti"><i class="fas fa-envelope" style="width:20px;"></i> Messaggi</div>
+      <div class="admin-nav-item" data-section="seo"><i class="fas fa-search" style="width:20px;"></i> SEO</div>
+      <div style="position:absolute; bottom:24px; left:24px; right:24px;">
+        <div class="admin-nav-item" onclick="logout()"><i class="fas fa-sign-out-alt" style="width:20px;"></i> Esci</div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+      <!-- DASHBOARD -->
+      <div class="admin-section active" id="section-dashboard">
+        <div class="admin-topbar">
+          <h2>Dashboard</h2>
+          <span style="color:var(--grigio-500); font-size:0.9rem;"><i class="fas fa-calendar"></i> 7 Marzo 2026</span>
+        </div>
+        <div class="admin-stats">
+          <div class="admin-stat-card">
+            <div class="number">12</div>
+            <div class="label">Prodotti Attivi</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="number">9</div>
+            <div class="label">Articoli Blog</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="number">3</div>
+            <div class="label">Landing Pages</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="number">47</div>
+            <div class="label">Messaggi Ricevuti</div>
+          </div>
+        </div>
+        <div class="admin-card">
+          <h3 style="margin-bottom:16px;">Attivita Recenti</h3>
+          <table class="admin-table">
+            <thead>
+              <tr><th>Data</th><th>Tipo</th><th>Titolo</th><th>Stato</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>05/03/2026</td><td><span class="badge badge-success">Blog</span></td><td>Guida Manutenzione Compressore</td><td><span class="badge badge-success">Pubblicato</span></td></tr>
+              <tr><td>28/02/2026</td><td><span class="badge badge-success">Blog</span></td><td>Oil-Free vs Lubrificato</td><td><span class="badge badge-success">Pubblicato</span></td></tr>
+              <tr><td>25/02/2026</td><td><span class="badge badge-warning">Prodotto</span></td><td>Serie GA VSD+ aggiornata</td><td><span class="badge badge-success">Attivo</span></td></tr>
+              <tr><td>20/02/2026</td><td><span class="badge badge-success">Blog</span></td><td>Risparmio Energetico 30%</td><td><span class="badge badge-success">Pubblicato</span></td></tr>
+              <tr><td>15/02/2026</td><td><span class="badge badge-error">Messaggio</span></td><td>Richiesta preventivo noleggio</td><td><span class="badge badge-warning">Da rispondere</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PRODOTTI -->
+      <div class="admin-section" id="section-prodotti">
+        <div class="admin-topbar">
+          <h2>Gestione Prodotti</h2>
+          <button class="btn btn-primary" onclick="openEditor('prodotto')"><i class="fas fa-plus"></i> Nuovo Prodotto</button>
+        </div>
+        <div class="admin-card">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Prodotto</th><th>Categoria</th><th>Stato</th><th>Azioni</th></tr>
+            </thead>
+            <tbody id="prodottiTable">
+              <tr><td>Serie GA — Compressori a Vite</td><td>Lubrificati</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Serie GA VSD+ — Velocita Variabile</td><td>Lubrificati</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Serie ZR/ZT — Oil-Free</td><td>Oil-Free</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Essiccatori FD/FX</td><td>Trattamento Aria</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Gruppi Elettrogeni QAS/QES</td><td>Generatori</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Generatori Azoto NGP</td><td>Generatori</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Tubazioni AIRnet</td><td>Accessori</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BLOG -->
+      <div class="admin-section" id="section-blog">
+        <div class="admin-topbar">
+          <h2>Blog / Articoli</h2>
+          <button class="btn btn-primary" onclick="openEditor('blog')"><i class="fas fa-plus"></i> Nuovo Articolo</button>
+        </div>
+        <div class="admin-card">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Titolo</th><th>Categoria</th><th>Data</th><th>Stato</th><th>Azioni</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Guida Manutenzione Compressore</td><td>Manutenzione</td><td>05/03/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Oil-Free vs Lubrificato</td><td>Guide</td><td>28/02/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Risparmio Energetico 30%</td><td>Efficienza</td><td>20/02/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Normativa Compressori 2026</td><td>Normative</td><td>15/02/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>VSD+ Inverter: Risparmio 50%</td><td>Efficienza</td><td>08/02/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Generazione Azoto On-Site</td><td>Guide</td><td>01/02/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Perdite Aria Compressa: Costi</td><td>Manutenzione</td><td>25/01/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>AIRnet: Tubazioni Alluminio</td><td>Novita</td><td>18/01/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Progettazione Sala Compressori</td><td>Guide</td><td>10/01/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- LANDING PAGES -->
+      <div class="admin-section" id="section-landing">
+        <div class="admin-topbar">
+          <h2>Landing Pages</h2>
+          <button class="btn btn-primary" onclick="openEditor('landing')"><i class="fas fa-plus"></i> Nuova Landing</button>
+        </div>
+        <div class="admin-card">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Titolo</th><th>URL</th><th>Conversioni</th><th>Stato</th><th>Azioni</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Preventivo Compressore Gratuito</td><td>/landing-preventivo</td><td>23</td><td><span class="badge badge-success">Attiva</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Noleggio Compressore Emergenza</td><td>/landing-noleggio</td><td>15</td><td><span class="badge badge-success">Attiva</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+              <tr><td>Diagnosi Energetica Gratuita</td><td>/landing-diagnosi</td><td>8</td><td><span class="badge badge-warning">Bozza</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- MESSAGGI -->
+      <div class="admin-section" id="section-contatti">
+        <div class="admin-topbar">
+          <h2>Messaggi Ricevuti</h2>
+          <span style="color:var(--grigio-500);">47 totali — 3 da rispondere</span>
+        </div>
+        <div class="admin-card">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Data</th><th>Nome</th><th>Azienda</th><th>Servizio</th><th>Stato</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>07/03/2026</td><td>Paolo Mantovani</td><td>Metalform SpA</td><td>Manutenzione</td><td><span class="badge badge-error">Nuovo</span></td></tr>
+              <tr><td>06/03/2026</td><td>Chiara Bortolotto</td><td>Alimentari Veneto Srl</td><td>Oil-Free</td><td><span class="badge badge-error">Nuovo</span></td></tr>
+              <tr><td>05/03/2026</td><td>Stefano Zago</td><td>Officine Zago</td><td>Noleggio</td><td><span class="badge badge-warning">In lavorazione</span></td></tr>
+              <tr><td>04/03/2026</td><td>Laura Piccolo</td><td>Farmaceutica Padovana</td><td>Diagnosi</td><td><span class="badge badge-success">Risposto</span></td></tr>
+              <tr><td>03/03/2026</td><td>Andrea Trevisan</td><td>Birrificio Euganeo</td><td>Generatore N2</td><td><span class="badge badge-success">Risposto</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SEO -->
+      <div class="admin-section" id="section-seo">
+        <div class="admin-topbar">
+          <h2>SEO e Indicizzazione</h2>
+        </div>
+        <div class="admin-stats">
+          <div class="admin-stat-card">
+            <div class="number">12</div>
+            <div class="label">Pagine Indicizzate</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="number">47</div>
+            <div class="label">URL in Sitemap</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="number">4.8</div>
+            <div class="label">Rating Google</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="number">187</div>
+            <div class="label">Recensioni Google</div>
+          </div>
+        </div>
+        <div class="admin-card">
+          <h3 style="margin-bottom:16px;">Checklist SEO</h3>
+          <div style="display:grid; gap:12px;">
+            <label style="display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--grigio-50); border-radius:6px; cursor:pointer;">
+              <input type="checkbox" checked style="width:auto;"> <span>Sitemap.xml aggiornata (12 pagine)</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--grigio-50); border-radius:6px; cursor:pointer;">
+              <input type="checkbox" checked style="width:auto;"> <span>Robots.txt configurato</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--grigio-50); border-radius:6px; cursor:pointer;">
+              <input type="checkbox" checked style="width:auto;"> <span>Schema.org LocalBusiness su homepage</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--grigio-50); border-radius:6px; cursor:pointer;">
+              <input type="checkbox" checked style="width:auto;"> <span>FAQPage schema su homepage</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--grigio-50); border-radius:6px; cursor:pointer;">
+              <input type="checkbox" checked style="width:auto;"> <span>Meta description su tutte le pagine</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--grigio-50); border-radius:6px; cursor:pointer;">
+              <input type="checkbox" checked style="width:auto;"> <span>Open Graph tags configurati</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--grigio-50); border-radius:6px; cursor:pointer;">
+              <input type="checkbox" style="width:auto;"> <span>Google Search Console verificato</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--grigio-50); border-radius:6px; cursor:pointer;">
+              <input type="checkbox" style="width:auto;"> <span>Google Business Profile ottimizzato</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDITOR MODAL -->
+      <div id="editorModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; padding:32px; overflow-y:auto;">
+        <div style="max-width:900px; margin:0 auto; background:var(--bianco); border-radius:12px; padding:32px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+            <h2 id="editorTitle">Nuovo Contenuto</h2>
+            <button onclick="closeEditor()" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--grigio-500);">&times;</button>
+          </div>
+          <div class="form-group">
+            <label>Titolo</label>
+            <input type="text" placeholder="Inserisci il titolo...">
+          </div>
+          <div class="form-group">
+            <label>Slug URL</label>
+            <input type="text" placeholder="titolo-della-pagina">
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div class="form-group">
+              <label>Categoria</label>
+              <select>
+                <option>Manutenzione</option>
+                <option>Guide</option>
+                <option>Efficienza</option>
+                <option>Normative</option>
+                <option>Novita</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Stato</label>
+              <select>
+                <option>Pubblicato</option>
+                <option>Bozza</option>
+                <option>Pianificato</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Immagine di Copertina (URL)</label>
+            <input type="url" placeholder="https://images.unsplash.com/...">
+          </div>
+          <div class="form-group">
+            <label>Meta Description</label>
+            <input type="text" placeholder="Descrizione SEO (max 160 caratteri)" maxlength="160">
+          </div>
+          <div class="form-group">
+            <label>Contenuto</label>
+            <div class="editor-toolbar">
+              <button onclick="document.execCommand('bold')"><b>B</b></button>
+              <button onclick="document.execCommand('italic')"><i>I</i></button>
+              <button onclick="document.execCommand('underline')"><u>U</u></button>
+              <button onclick="document.execCommand('insertUnorderedList')">Lista</button>
+              <button onclick="document.execCommand('formatBlock','','h2')">H2</button>
+              <button onclick="document.execCommand('formatBlock','','h3')">H3</button>
+              <button onclick="document.execCommand('createLink', false, prompt('URL:'))">Link</button>
+              <button onclick="document.execCommand('insertImage', false, prompt('URL immagine:'))">Immagine</button>
+            </div>
+            <div contenteditable="true" class="editor-area" style="border-radius:0 0 8px 8px;">
+              <p>Scrivi qui il contenuto dell'articolo...</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:24px;">
+            <button class="btn btn-outline" onclick="closeEditor()">Annulla</button>
+            <button class="btn btn-primary" onclick="closeEditor()"><i class="fas fa-save"></i> Salva e Pubblica</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById('loginUser').value;
+      const pass = document.getElementById('loginPass').value;
+      if (user === 'admin' && pass === 'admin') {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+      } else {
+        alert('Credenziali non valide. Usa: admin / admin');
+      }
+    }
+
+    function logout() {
+      document.getElementById('adminPanel').style.display = 'none';
+      document.getElementById('loginScreen').style.display = 'flex';
+    }
+
+    // Navigation
+    document.querySelectorAll('.admin-nav-item[data-section]').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.admin-nav-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+        document.getElementById('section-' + item.dataset.section).classList.add('active');
+      });
+    });
+
+    function openEditor(type) {
+      const titles = { prodotto: 'Nuovo Prodotto', blog: 'Nuovo Articolo', landing: 'Nuova Landing Page' };
+      document.getElementById('editorTitle').textContent = titles[type] || 'Nuovo Contenuto';
+      document.getElementById('editorModal').style.display = 'block';
+    }
+
+    function closeEditor() {
+      document.getElementById('editorModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
