@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/admin.css">
 </head>
 <body style="background: var(--grigio-50);">
@@ -52,8 +51,11 @@
       </div>
     </aside>
 
+    <!-- MOBILE OVERLAY -->
+    <div class="admin-sidebar-overlay" id="sidebarOverlay" onclick="closeMobileSidebar()"></div>
+
     <!-- MOBILE SIDEBAR TOGGLE -->
-    <button class="admin-mobile-toggle" id="adminMobileToggle" onclick="document.querySelector('.admin-sidebar').classList.toggle('mobile-open')">
+    <button class="admin-mobile-toggle" id="adminMobileToggle" onclick="toggleMobileSidebar()">
       <i class="fas fa-bars"></i>
     </button>
 
@@ -86,12 +88,14 @@
         </div>
         <div class="admin-card">
           <h3 style="margin-bottom:16px;">Attivita Recenti</h3>
-          <table class="admin-table">
-            <thead>
-              <tr><th>Data</th><th>Tipo</th><th>Titolo</th><th>Stato</th></tr>
-            </thead>
-            <tbody id="dashActivity"></tbody>
-          </table>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Data</th><th>Tipo</th><th>Titolo</th><th>Stato</th></tr>
+              </thead>
+              <tbody id="dashActivity"></tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -177,12 +181,14 @@
 
         <!-- TABELLA PRODOTTI -->
         <div class="admin-card">
-          <table class="admin-table">
-            <thead>
-              <tr><th>Prodotto</th><th>Categoria</th><th>Prezzo</th><th>SKU</th><th>Stato</th><th>Azioni</th></tr>
-            </thead>
-            <tbody id="prodottiTable"></tbody>
-          </table>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Prodotto</th><th>Categoria</th><th>Prezzo</th><th>SKU</th><th>Stato</th><th>Azioni</th></tr>
+              </thead>
+              <tbody id="prodottiTable"></tbody>
+            </table>
+          </div>
           <div class="admin-empty" id="prodottiEmpty" style="display:none;">
             <i class="fas fa-boxes"></i>
             <p>Nessun prodotto trovato</p>
@@ -269,12 +275,14 @@
 
         <!-- TABELLA CLIENTI -->
         <div class="admin-card">
-          <table class="admin-table">
-            <thead>
-              <tr><th>Nome</th><th>Azienda</th><th>Email</th><th>Telefono</th><th>Tipo</th><th>Azioni</th></tr>
-            </thead>
-            <tbody id="clientiTable"></tbody>
-          </table>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Nome</th><th>Azienda</th><th>Email</th><th>Telefono</th><th>Tipo</th><th>Azioni</th></tr>
+              </thead>
+              <tbody id="clientiTable"></tbody>
+            </table>
+          </div>
           <div class="admin-empty" id="clientiEmpty" style="display:none;">
             <i class="fas fa-users"></i>
             <p>Nessun cliente trovato</p>
@@ -373,12 +381,14 @@
 
         <!-- TABELLA BLOG -->
         <div class="admin-card">
-          <table class="admin-table">
-            <thead>
-              <tr><th>Titolo</th><th>Categoria</th><th>Data</th><th>Stato</th><th>Azioni</th></tr>
-            </thead>
-            <tbody id="blogTable"></tbody>
-          </table>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Titolo</th><th>Categoria</th><th>Data</th><th>Stato</th><th>Azioni</th></tr>
+              </thead>
+              <tbody id="blogTable"></tbody>
+            </table>
+          </div>
           <div class="admin-empty" id="blogEmpty" style="display:none;">
             <i class="fas fa-newspaper"></i>
             <p>Nessun articolo trovato</p>
@@ -393,12 +403,14 @@
           <span style="color:var(--grigio-500);" id="messaggiCount"></span>
         </div>
         <div class="admin-card">
-          <table class="admin-table">
-            <thead>
-              <tr><th>Data</th><th>Nome</th><th>Azienda</th><th>Servizio</th><th>Stato</th><th>Azioni</th></tr>
-            </thead>
-            <tbody id="messaggiTable"></tbody>
-          </table>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Data</th><th>Nome</th><th>Azienda</th><th>Servizio</th><th>Stato</th><th>Azioni</th></tr>
+              </thead>
+              <tbody id="messaggiTable"></tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -470,6 +482,7 @@
         <!-- Storico Pagamenti (placeholder) -->
         <div class="admin-card">
           <h3 style="margin-bottom:20px;"><i class="fas fa-history" style="color:var(--arancione); margin-right:8px;"></i> Storico Pagamenti</h3>
+          <div class="admin-table-wrap">
           <table class="admin-table">
             <thead>
               <tr><th>Data</th><th>Cliente</th><th>Descrizione</th><th>Importo</th><th>Metodo</th><th>Stato</th></tr>
@@ -481,6 +494,7 @@
               </td></tr>
             </tbody>
           </table>
+          </div>
         </div>
 
         <!-- Funzionalita previste -->
@@ -540,6 +554,7 @@
           <button class="btn btn-primary" onclick="openEditor('landing')"><i class="fas fa-plus"></i> Nuova Landing</button>
         </div>
         <div class="admin-card">
+          <div class="admin-table-wrap">
           <table class="admin-table">
             <thead>
               <tr><th>Titolo</th><th>URL</th><th>Conversioni</th><th>Stato</th><th>Azioni</th></tr>
@@ -550,6 +565,7 @@
               <tr><td>Diagnosi Energetica Gratuita</td><td>/landing-diagnosi</td><td>8</td><td><span class="badge badge-warning">Bozza</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
             </tbody>
           </table>
+          </div>
         </div>
       </div>
 

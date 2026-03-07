@@ -96,6 +96,19 @@ if (sessionStorage.getItem('crono_auth') === '1') {
   document.getElementById('adminPanel').style.display = 'block';
 }
 
+// ============ MOBILE SIDEBAR ============
+function toggleMobileSidebar() {
+  var sidebar = document.querySelector('.admin-sidebar');
+  var overlay = document.getElementById('sidebarOverlay');
+  sidebar.classList.toggle('mobile-open');
+  overlay.classList.toggle('active');
+}
+
+function closeMobileSidebar() {
+  document.querySelector('.admin-sidebar').classList.remove('mobile-open');
+  document.getElementById('sidebarOverlay').classList.remove('active');
+}
+
 // ============ NAVIGATION ============
 document.querySelectorAll('.admin-nav-item[data-section]').forEach(function(item) {
   item.addEventListener('click', function() {
@@ -103,8 +116,7 @@ document.querySelectorAll('.admin-nav-item[data-section]').forEach(function(item
     item.classList.add('active');
     document.querySelectorAll('.admin-section').forEach(function(s) { s.classList.remove('active'); });
     document.getElementById('section-' + item.dataset.section).classList.add('active');
-    // Close mobile sidebar
-    document.querySelector('.admin-sidebar').classList.remove('mobile-open');
+    closeMobileSidebar();
   });
 });
 
