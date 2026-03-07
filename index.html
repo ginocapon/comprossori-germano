@@ -177,7 +177,7 @@
         </div>
       </div>
       <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=500&fit=crop" alt="Compressore industriale in sala macchine" width="600" height="500">
+        <img src="image/hero-crono.webp" alt="Crono Compressor — Compressori industriali" width="600" height="500">
       </div>
     </div>
   </section>
@@ -606,6 +606,42 @@
       </div>
     </div>
   </footer>
+
+  <!-- ======== CHATBOT ======== -->
+  <div id="chatbot-toggle" onclick="document.getElementById('chatbot-window').classList.toggle('open'); this.classList.toggle('active');" aria-label="Apri assistente virtuale">
+    <i class="fas fa-comments"></i>
+    <span class="chatbot-badge">1</span>
+  </div>
+
+  <div id="chatbot-window">
+    <div class="chatbot-header">
+      <div class="chatbot-header-info">
+        <div class="chatbot-avatar">CC</div>
+        <div>
+          <div class="chatbot-name">Crono Assistente</div>
+          <div class="chatbot-status"><span class="status-dot"></span> Online</div>
+        </div>
+      </div>
+      <button class="chatbot-close" onclick="document.getElementById('chatbot-window').classList.remove('open'); document.getElementById('chatbot-toggle').classList.remove('active');" aria-label="Chiudi chat">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="chatbot-messages" id="chatbot-messages">
+      <div class="chat-msg bot">
+        <div class="chat-bubble">Ciao! Sono l'assistente virtuale di Crono Compressor. Come posso aiutarti? Scegli un argomento o scrivi la tua domanda.</div>
+      </div>
+      <div class="chat-quick-replies" id="chatbot-quick">
+        <button onclick="chatbotSend('Quali servizi offrite?')">Servizi offerti</button>
+        <button onclick="chatbotSend('Vorrei un preventivo')">Preventivo</button>
+        <button onclick="chatbotSend('Avete compressori oil-free?')">Compressori Oil-Free</button>
+        <button onclick="chatbotSend('Orari e contatti')">Contatti</button>
+      </div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chatbot-input" placeholder="Scrivi un messaggio..." onkeydown="if(event.key==='Enter')chatbotSendInput()">
+      <button onclick="chatbotSendInput()" aria-label="Invia messaggio"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
 
   <!-- ======== SCRIPTS ======== -->
   <script src="js/main.js"></script>
