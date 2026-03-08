@@ -1,26 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" width="100" height="120">
+  <!-- Body / Red jumpsuit -->
+  <rect x="30" y="78" width="40" height="32" rx="6" fill="#D42B2B"/>
+  <!-- Jumpsuit collar -->
+  <path d="M36 78 Q50 85 64 78" fill="#B82020"/>
+  <!-- Arms -->
+  <rect x="18" y="80" width="14" height="8" rx="4" fill="#D42B2B"/>
+  <rect x="68" y="80" width="14" height="8" rx="4" fill="#D42B2B"/>
+  <!-- Hands -->
+  <circle cx="16" cy="84" r="5" fill="#FFD093"/>
+  <circle cx="84" cy="84" r="5" fill="#FFD093"/>
+  <!-- "C" on chest -->
+  <text x="50" y="100" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="16" font-weight="900" fill="#FFFFFF" letter-spacing="0">C</text>
+  <!-- Neck -->
+  <rect x="44" y="73" width="12" height="8" rx="3" fill="#FFD093"/>
   <!-- Face circle -->
-  <circle cx="50" cy="55" r="30" fill="#FFD093"/>
+  <circle cx="50" cy="55" r="22" fill="#FFD093"/>
   <!-- Eyes -->
-  <circle cx="40" cy="52" r="4" fill="#333"/>
-  <circle cx="60" cy="52" r="4" fill="#333"/>
+  <circle cx="42" cy="53" r="3.5" fill="#333"/>
+  <circle cx="58" cy="53" r="3.5" fill="#333"/>
   <!-- Eye shine -->
-  <circle cx="41.5" cy="50.5" r="1.5" fill="#fff"/>
-  <circle cx="61.5" cy="50.5" r="1.5" fill="#fff"/>
+  <circle cx="43.2" cy="51.5" r="1.3" fill="#fff"/>
+  <circle cx="59.2" cy="51.5" r="1.3" fill="#fff"/>
   <!-- Smile -->
-  <path d="M38 63 Q50 73 62 63" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M40 62 Q50 70 60 62" stroke="#333" stroke-width="2.2" fill="none" stroke-linecap="round"/>
   <!-- Cheeks blush -->
-  <ellipse cx="34" cy="62" rx="5" ry="3" fill="#FFB5B5" opacity="0.5"/>
-  <ellipse cx="66" cy="62" rx="5" ry="3" fill="#FFB5B5" opacity="0.5"/>
-  <!-- Hard hat - main -->
-  <ellipse cx="50" cy="38" rx="34" ry="18" fill="#FFD600"/>
+  <ellipse cx="35" cy="60" rx="4" ry="2.5" fill="#FFB5B5" opacity="0.5"/>
+  <ellipse cx="65" cy="60" rx="4" ry="2.5" fill="#FFB5B5" opacity="0.5"/>
+  <!-- Hard hat - main dome -->
+  <ellipse cx="50" cy="40" rx="28" ry="16" fill="#FFD600"/>
   <!-- Hard hat - brim -->
-  <path d="M14 38 Q14 44 50 44 Q86 44 86 38" fill="#F5C800" stroke="#E6B800" stroke-width="1"/>
+  <path d="M18 42 Q18 47 50 47 Q82 47 82 42" fill="#F5C800" stroke="#E6B800" stroke-width="1"/>
   <!-- Hard hat - top ridge -->
-  <path d="M32 22 Q50 16 68 22" stroke="#E6B800" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M34 26 Q50 20 66 26" stroke="#E6B800" stroke-width="2.5" fill="none" stroke-linecap="round"/>
   <!-- Hard hat - dome highlight -->
-  <ellipse cx="45" cy="28" rx="12" ry="6" fill="#FFE44D" opacity="0.6"/>
+  <ellipse cx="44" cy="32" rx="10" ry="5" fill="#FFE44D" opacity="0.5"/>
   <!-- Ears -->
-  <ellipse cx="22" cy="55" rx="5" ry="7" fill="#FFD093"/>
-  <ellipse cx="78" cy="55" rx="5" ry="7" fill="#FFD093"/>
+  <ellipse cx="28" cy="55" rx="4" ry="6" fill="#FFD093"/>
+  <ellipse cx="72" cy="55" rx="4" ry="6" fill="#FFD093"/>
 </svg>
