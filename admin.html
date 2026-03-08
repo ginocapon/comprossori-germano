@@ -9,24 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    body { background: var(--grigio-50); }
-    .admin-login { display:flex; align-items:center; justify-content:center; min-height:100vh; }
-    .admin-login-card { background:var(--bianco); padding:48px; border-radius:12px; box-shadow:var(--shadow-lg); max-width:400px; width:100%; text-align:center; }
-    .admin-login-card .logo { font-family:var(--font-heading); font-size:1.5rem; font-weight:700; color:var(--blu-scuro); text-transform:uppercase; margin-bottom:8px; }
-    .admin-login-card .logo span { color:var(--arancione); }
-    .tab-btn { padding:10px 20px; border:none; background:transparent; font-family:var(--font-heading); font-size:0.9rem; font-weight:600; cursor:pointer; color:var(--grigio-500); border-bottom:2px solid transparent; text-transform:uppercase; }
-    .tab-btn.active { color:var(--arancione); border-bottom-color:var(--arancione); }
-    .admin-section { display:none; }
-    .admin-section.active { display:block; }
-    .editor-toolbar { display:flex; gap:8px; padding:12px; background:var(--grigio-50); border:1px solid var(--grigio-200); border-bottom:none; border-radius:8px 8px 0 0; flex-wrap:wrap; }
-    .editor-toolbar button { padding:6px 12px; border:1px solid var(--grigio-200); background:var(--bianco); border-radius:4px; cursor:pointer; font-size:0.8rem; }
-    .editor-toolbar button:hover { background:var(--grigio-100); }
-    .editor-area { width:100%; min-height:300px; padding:16px; border:1px solid var(--grigio-200); border-radius:0 0 8px 8px; font-family:var(--font-body); font-size:0.95rem; line-height:1.7; resize:vertical; }
-  </style>
+  <link rel="stylesheet" href="css/admin.css">
 </head>
-<body>
+<body style="background: var(--grigio-50);">
+
   <!-- LOGIN SCREEN -->
   <div class="admin-login" id="loginScreen">
     <div class="admin-login-card">
@@ -54,116 +40,521 @@
       <div class="logo">Crono <span>Compressor</span></div>
       <div class="admin-nav-item active" data-section="dashboard"><i class="fas fa-tachometer-alt" style="width:20px;"></i> Dashboard</div>
       <div class="admin-nav-item" data-section="prodotti"><i class="fas fa-boxes" style="width:20px;"></i> Prodotti</div>
+      <div class="admin-nav-item" data-section="clienti"><i class="fas fa-users" style="width:20px;"></i> Clienti</div>
       <div class="admin-nav-item" data-section="blog"><i class="fas fa-newspaper" style="width:20px;"></i> Blog / Articoli</div>
-      <div class="admin-nav-item" data-section="landing"><i class="fas fa-rocket" style="width:20px;"></i> Landing Pages</div>
       <div class="admin-nav-item" data-section="contatti"><i class="fas fa-envelope" style="width:20px;"></i> Messaggi</div>
+      <div class="admin-nav-item" data-section="pagamenti"><i class="fas fa-credit-card" style="width:20px;"></i> Pagamenti</div>
+      <div class="admin-nav-item" data-section="landing"><i class="fas fa-rocket" style="width:20px;"></i> Landing Pages</div>
       <div class="admin-nav-item" data-section="seo"><i class="fas fa-search" style="width:20px;"></i> SEO</div>
       <div style="position:absolute; bottom:24px; left:24px; right:24px;">
         <div class="admin-nav-item" onclick="logout()"><i class="fas fa-sign-out-alt" style="width:20px;"></i> Esci</div>
       </div>
     </aside>
 
+    <!-- MOBILE OVERLAY -->
+    <div class="admin-sidebar-overlay" id="sidebarOverlay" onclick="closeMobileSidebar()"></div>
+
+    <!-- MOBILE SIDEBAR TOGGLE -->
+    <button class="admin-mobile-toggle" id="adminMobileToggle" onclick="toggleMobileSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+
     <!-- MAIN CONTENT -->
     <main class="admin-main">
 
-      <!-- DASHBOARD -->
+      <!-- ======================== DASHBOARD ======================== -->
       <div class="admin-section active" id="section-dashboard">
         <div class="admin-topbar">
           <h2>Dashboard</h2>
-          <span style="color:var(--grigio-500); font-size:0.9rem;"><i class="fas fa-calendar"></i> 7 Marzo 2026</span>
+          <span style="color:var(--grigio-500); font-size:0.9rem;"><i class="fas fa-calendar"></i> <span id="dashDate"></span></span>
         </div>
-        <div class="admin-stats">
+        <div class="admin-stats" id="dashStats">
           <div class="admin-stat-card">
-            <div class="number">12</div>
+            <div class="number" id="statProdotti">0</div>
             <div class="label">Prodotti Attivi</div>
           </div>
           <div class="admin-stat-card">
-            <div class="number">9</div>
+            <div class="number" id="statArticoli">0</div>
             <div class="label">Articoli Blog</div>
           </div>
           <div class="admin-stat-card">
-            <div class="number">3</div>
-            <div class="label">Landing Pages</div>
+            <div class="number" id="statClienti">0</div>
+            <div class="label">Clienti</div>
           </div>
           <div class="admin-stat-card">
-            <div class="number">47</div>
+            <div class="number" id="statMessaggi">0</div>
             <div class="label">Messaggi Ricevuti</div>
           </div>
         </div>
         <div class="admin-card">
           <h3 style="margin-bottom:16px;">Attivita Recenti</h3>
-          <table class="admin-table">
-            <thead>
-              <tr><th>Data</th><th>Tipo</th><th>Titolo</th><th>Stato</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>05/03/2026</td><td><span class="badge badge-success">Blog</span></td><td>Guida Manutenzione Compressore</td><td><span class="badge badge-success">Pubblicato</span></td></tr>
-              <tr><td>28/02/2026</td><td><span class="badge badge-success">Blog</span></td><td>Oil-Free vs Lubrificato</td><td><span class="badge badge-success">Pubblicato</span></td></tr>
-              <tr><td>25/02/2026</td><td><span class="badge badge-warning">Prodotto</span></td><td>Serie GA VSD+ aggiornata</td><td><span class="badge badge-success">Attivo</span></td></tr>
-              <tr><td>20/02/2026</td><td><span class="badge badge-success">Blog</span></td><td>Risparmio Energetico 30%</td><td><span class="badge badge-success">Pubblicato</span></td></tr>
-              <tr><td>15/02/2026</td><td><span class="badge badge-error">Messaggio</span></td><td>Richiesta preventivo noleggio</td><td><span class="badge badge-warning">Da rispondere</span></td></tr>
-            </tbody>
-          </table>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Data</th><th>Tipo</th><th>Titolo</th><th>Stato</th></tr>
+              </thead>
+              <tbody id="dashActivity"></tbody>
+            </table>
+          </div>
         </div>
       </div>
 
-      <!-- PRODOTTI -->
+      <!-- ======================== PRODOTTI ======================== -->
       <div class="admin-section" id="section-prodotti">
         <div class="admin-topbar">
           <h2>Gestione Prodotti</h2>
-          <button class="btn btn-primary" onclick="openEditor('prodotto')"><i class="fas fa-plus"></i> Nuovo Prodotto</button>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <input type="text" id="prodottiSearch" placeholder="Cerca prodotto..." class="admin-search-input" oninput="renderProdotti()">
+            <select id="prodottiFilter" class="admin-filter-select" onchange="renderProdotti()">
+              <option value="">Tutte le Categorie</option>
+              <option value="Lubrificati">Lubrificati</option>
+              <option value="Oil-Free">Oil-Free</option>
+              <option value="Trattamento Aria">Trattamento Aria</option>
+              <option value="Generatori">Generatori</option>
+              <option value="Accessori">Accessori</option>
+            </select>
+            <button class="btn btn-primary" onclick="openProdottoForm()"><i class="fas fa-plus"></i> Nuovo Prodotto</button>
+          </div>
         </div>
+
+        <!-- FORM PRODOTTO -->
+        <div class="admin-card admin-form-panel" id="prodottoFormPanel" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h3 id="prodottoFormTitle">Nuovo Prodotto</h3>
+            <button onclick="closeProdottoForm()" class="admin-close-btn"><i class="fas fa-times"></i></button>
+          </div>
+          <form onsubmit="saveProdotto(event)" id="prodottoForm">
+            <input type="hidden" id="prodottoId">
+            <div class="admin-form-grid">
+              <div class="form-group">
+                <label>Nome Prodotto *</label>
+                <input type="text" id="prodottoNome" required placeholder="es. Serie GA — Compressori a Vite">
+              </div>
+              <div class="form-group">
+                <label>Categoria *</label>
+                <select id="prodottoCategoria" required>
+                  <option value="">Seleziona...</option>
+                  <option>Lubrificati</option>
+                  <option>Oil-Free</option>
+                  <option>Trattamento Aria</option>
+                  <option>Generatori</option>
+                  <option>Accessori</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Prezzo (EUR)</label>
+                <input type="text" id="prodottoPrezzo" placeholder="es. Da 5.000 / Su richiesta">
+              </div>
+              <div class="form-group">
+                <label>Stato</label>
+                <select id="prodottoStato">
+                  <option value="Attivo">Attivo</option>
+                  <option value="Bozza">Bozza</option>
+                  <option value="Disattivato">Disattivato</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Descrizione Breve</label>
+              <textarea id="prodottoDescrizione" rows="3" placeholder="Descrizione del prodotto per la scheda prodotto..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>Specifiche Tecniche</label>
+              <textarea id="prodottoSpecifiche" rows="3" placeholder="es. Potenza: 5-500 kW | Portata: 10-1000 l/s | Pressione: 7-13 bar"></textarea>
+            </div>
+            <div class="admin-form-grid">
+              <div class="form-group">
+                <label>Immagine (URL)</label>
+                <input type="url" id="prodottoImmagine" placeholder="https://images.unsplash.com/...">
+              </div>
+              <div class="form-group">
+                <label>Codice Prodotto / SKU</label>
+                <input type="text" id="prodottoSKU" placeholder="es. GA-VSD-001">
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:12px;">
+              <button type="button" class="btn btn-outline" onclick="closeProdottoForm()">Annulla</button>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Salva Prodotto</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TABELLA PRODOTTI -->
         <div class="admin-card">
-          <table class="admin-table">
-            <thead>
-              <tr><th>Prodotto</th><th>Categoria</th><th>Stato</th><th>Azioni</th></tr>
-            </thead>
-            <tbody id="prodottiTable">
-              <tr><td>Serie GA — Compressori a Vite</td><td>Lubrificati</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>Serie GA VSD+ — Velocita Variabile</td><td>Lubrificati</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>Serie ZR/ZT — Oil-Free</td><td>Oil-Free</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>Essiccatori FD/FX</td><td>Trattamento Aria</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>Gruppi Elettrogeni QAS/QES</td><td>Generatori</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>Generatori Azoto NGP</td><td>Generatori</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>Tubazioni AIRnet</td><td>Accessori</td><td><span class="badge badge-success">Attivo</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-            </tbody>
-          </table>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Prodotto</th><th>Categoria</th><th>Prezzo</th><th>SKU</th><th>Stato</th><th>Azioni</th></tr>
+              </thead>
+              <tbody id="prodottiTable"></tbody>
+            </table>
+          </div>
+          <div class="admin-empty" id="prodottiEmpty" style="display:none;">
+            <i class="fas fa-boxes"></i>
+            <p>Nessun prodotto trovato</p>
+          </div>
         </div>
       </div>
 
-      <!-- BLOG -->
+      <!-- ======================== CLIENTI ======================== -->
+      <div class="admin-section" id="section-clienti">
+        <div class="admin-topbar">
+          <h2>Gestione Clienti</h2>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <input type="text" id="clientiSearch" placeholder="Cerca cliente..." class="admin-search-input" oninput="renderClienti()">
+            <button class="btn btn-primary" onclick="openClienteForm()"><i class="fas fa-plus"></i> Nuovo Cliente</button>
+          </div>
+        </div>
+
+        <!-- FORM CLIENTE -->
+        <div class="admin-card admin-form-panel" id="clienteFormPanel" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h3 id="clienteFormTitle">Nuovo Cliente</h3>
+            <button onclick="closeClienteForm()" class="admin-close-btn"><i class="fas fa-times"></i></button>
+          </div>
+          <form onsubmit="saveCliente(event)" id="clienteForm">
+            <input type="hidden" id="clienteId">
+            <div class="admin-form-grid">
+              <div class="form-group">
+                <label>Nome e Cognome *</label>
+                <input type="text" id="clienteNome" required placeholder="es. Marco Rossi">
+              </div>
+              <div class="form-group">
+                <label>Azienda</label>
+                <input type="text" id="clienteAzienda" placeholder="es. Metalform SpA">
+              </div>
+              <div class="form-group">
+                <label>Email *</label>
+                <input type="email" id="clienteEmail" required placeholder="es. marco@azienda.it">
+              </div>
+              <div class="form-group">
+                <label>Telefono</label>
+                <input type="tel" id="clienteTelefono" placeholder="es. +39 049 555 1234">
+              </div>
+              <div class="form-group">
+                <label>Indirizzo</label>
+                <input type="text" id="clienteIndirizzo" placeholder="es. Via Roma 1, 35100 Padova">
+              </div>
+              <div class="form-group">
+                <label>P.IVA / C.F.</label>
+                <input type="text" id="clientePiva" placeholder="es. IT01234567890">
+              </div>
+              <div class="form-group">
+                <label>Tipo Cliente</label>
+                <select id="clienteTipo">
+                  <option value="Prospect">Prospect</option>
+                  <option value="Cliente">Cliente</option>
+                  <option value="VIP">VIP</option>
+                  <option value="Ex-cliente">Ex-cliente</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Settore</label>
+                <select id="clienteSettore">
+                  <option value="">Seleziona...</option>
+                  <option>Alimentare</option>
+                  <option>Farmaceutico</option>
+                  <option>Metalmeccanico</option>
+                  <option>Chimico</option>
+                  <option>Automotive</option>
+                  <option>Edilizia</option>
+                  <option>Altro</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Note</label>
+              <textarea id="clienteNote" rows="3" placeholder="Note interne sul cliente..."></textarea>
+            </div>
+            <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:12px;">
+              <button type="button" class="btn btn-outline" onclick="closeClienteForm()">Annulla</button>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Salva Cliente</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TABELLA CLIENTI -->
+        <div class="admin-card">
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Nome</th><th>Azienda</th><th>Email</th><th>Telefono</th><th>Tipo</th><th>Azioni</th></tr>
+              </thead>
+              <tbody id="clientiTable"></tbody>
+            </table>
+          </div>
+          <div class="admin-empty" id="clientiEmpty" style="display:none;">
+            <i class="fas fa-users"></i>
+            <p>Nessun cliente trovato</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================== BLOG ======================== -->
       <div class="admin-section" id="section-blog">
         <div class="admin-topbar">
           <h2>Blog / Articoli</h2>
-          <button class="btn btn-primary" onclick="openEditor('blog')"><i class="fas fa-plus"></i> Nuovo Articolo</button>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <select id="blogFilter" class="admin-filter-select" onchange="renderBlog()">
+              <option value="">Tutte le Categorie</option>
+              <option value="Manutenzione">Manutenzione</option>
+              <option value="Guide">Guide</option>
+              <option value="Efficienza">Efficienza</option>
+              <option value="Normative">Normative</option>
+              <option value="Novita">Novita</option>
+            </select>
+            <button class="btn btn-primary" onclick="openBlogForm()"><i class="fas fa-plus"></i> Nuovo Articolo</button>
+          </div>
         </div>
+
+        <!-- FORM BLOG -->
+        <div class="admin-card admin-form-panel" id="blogFormPanel" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h3 id="blogFormTitle">Nuovo Articolo</h3>
+            <button onclick="closeBlogForm()" class="admin-close-btn"><i class="fas fa-times"></i></button>
+          </div>
+          <form onsubmit="saveBlog(event)" id="blogForm">
+            <input type="hidden" id="blogId">
+            <div class="admin-form-grid">
+              <div class="form-group">
+                <label>Titolo *</label>
+                <input type="text" id="blogTitolo" required placeholder="Titolo dell'articolo">
+              </div>
+              <div class="form-group">
+                <label>Slug URL</label>
+                <input type="text" id="blogSlug" placeholder="titolo-articolo (generato automaticamente)">
+              </div>
+              <div class="form-group">
+                <label>Categoria *</label>
+                <select id="blogCategoria" required>
+                  <option value="">Seleziona...</option>
+                  <option>Manutenzione</option>
+                  <option>Guide</option>
+                  <option>Efficienza</option>
+                  <option>Normative</option>
+                  <option>Novita</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Stato</label>
+                <select id="blogStato">
+                  <option value="Pubblicato">Pubblicato</option>
+                  <option value="Bozza">Bozza</option>
+                  <option value="Pianificato">Pianificato</option>
+                </select>
+              </div>
+            </div>
+            <div class="admin-form-grid">
+              <div class="form-group">
+                <label>Immagine di Copertina (URL)</label>
+                <input type="url" id="blogImmagine" placeholder="https://images.unsplash.com/...">
+              </div>
+              <div class="form-group">
+                <label>Meta Description</label>
+                <input type="text" id="blogMeta" placeholder="Descrizione SEO (max 160 caratteri)" maxlength="160">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Contenuto</label>
+              <div class="editor-toolbar">
+                <button type="button" onclick="execCmd('bold')"><b>B</b></button>
+                <button type="button" onclick="execCmd('italic')"><i>I</i></button>
+                <button type="button" onclick="execCmd('underline')"><u>U</u></button>
+                <button type="button" onclick="execCmd('insertUnorderedList')"><i class="fas fa-list-ul"></i></button>
+                <button type="button" onclick="execCmd('insertOrderedList')"><i class="fas fa-list-ol"></i></button>
+                <button type="button" onclick="execCmd('formatBlock','h2')">H2</button>
+                <button type="button" onclick="execCmd('formatBlock','h3')">H3</button>
+                <button type="button" onclick="execCmd('formatBlock','p')">P</button>
+                <button type="button" onclick="insertLink()"><i class="fas fa-link"></i></button>
+                <button type="button" onclick="insertImage()"><i class="fas fa-image"></i></button>
+              </div>
+              <div contenteditable="true" class="editor-area" id="blogContenuto">
+                <p>Scrivi qui il contenuto dell'articolo...</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:12px;">
+              <button type="button" class="btn btn-outline" onclick="closeBlogForm()">Annulla</button>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Salva Articolo</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TABELLA BLOG -->
         <div class="admin-card">
-          <table class="admin-table">
-            <thead>
-              <tr><th>Titolo</th><th>Categoria</th><th>Data</th><th>Stato</th><th>Azioni</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Guida Manutenzione Compressore</td><td>Manutenzione</td><td>05/03/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>Oil-Free vs Lubrificato</td><td>Guide</td><td>28/02/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>Risparmio Energetico 30%</td><td>Efficienza</td><td>20/02/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>Normativa Compressori 2026</td><td>Normative</td><td>15/02/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>VSD+ Inverter: Risparmio 50%</td><td>Efficienza</td><td>08/02/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>Generazione Azoto On-Site</td><td>Guide</td><td>01/02/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>Perdite Aria Compressa: Costi</td><td>Manutenzione</td><td>25/01/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>AIRnet: Tubazioni Alluminio</td><td>Novita</td><td>18/01/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-              <tr><td>Progettazione Sala Compressori</td><td>Guide</td><td>10/01/2026</td><td><span class="badge badge-success">Pubblicato</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
-            </tbody>
-          </table>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Titolo</th><th>Categoria</th><th>Data</th><th>Stato</th><th>Azioni</th></tr>
+              </thead>
+              <tbody id="blogTable"></tbody>
+            </table>
+          </div>
+          <div class="admin-empty" id="blogEmpty" style="display:none;">
+            <i class="fas fa-newspaper"></i>
+            <p>Nessun articolo trovato</p>
+          </div>
         </div>
       </div>
 
-      <!-- LANDING PAGES -->
+      <!-- ======================== MESSAGGI ======================== -->
+      <div class="admin-section" id="section-contatti">
+        <div class="admin-topbar">
+          <h2>Messaggi Ricevuti</h2>
+          <span style="color:var(--grigio-500);" id="messaggiCount"></span>
+        </div>
+        <div class="admin-card">
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Data</th><th>Nome</th><th>Azienda</th><th>Servizio</th><th>Stato</th><th>Azioni</th></tr>
+              </thead>
+              <tbody id="messaggiTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================== PAGAMENTI ======================== -->
+      <div class="admin-section" id="section-pagamenti">
+        <div class="admin-topbar">
+          <h2>Pagamenti</h2>
+          <span class="badge badge-warning" style="font-size:0.85rem; padding:8px 16px;"><i class="fas fa-tools"></i> Modulo in preparazione</span>
+        </div>
+
+        <div class="admin-stats">
+          <div class="admin-stat-card">
+            <div class="number">—</div>
+            <div class="label">Fatture Emesse</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="number">—</div>
+            <div class="label">In Attesa</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="number">—</div>
+            <div class="label">Incassato (Mese)</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="number">—</div>
+            <div class="label">Scaduti</div>
+          </div>
+        </div>
+
+        <!-- Configurazione Gateway -->
+        <div class="admin-card">
+          <h3 style="margin-bottom:20px;"><i class="fas fa-cog" style="color:var(--arancione); margin-right:8px;"></i> Configurazione Gateway di Pagamento</h3>
+          <div class="admin-form-grid">
+            <div class="form-group">
+              <label>Provider</label>
+              <select id="paymentProvider" disabled>
+                <option value="">Seleziona provider...</option>
+                <option>Stripe</option>
+                <option>PayPal</option>
+                <option>Satispay</option>
+                <option>Bonifico Bancario</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>API Key (Live)</label>
+              <input type="password" placeholder="sk_live_..." disabled>
+            </div>
+            <div class="form-group">
+              <label>Webhook URL</label>
+              <input type="text" placeholder="https://tuosito.it/api/webhook" disabled>
+            </div>
+            <div class="form-group">
+              <label>Modalita</label>
+              <select disabled>
+                <option>Test (Sandbox)</option>
+                <option>Produzione</option>
+              </select>
+            </div>
+          </div>
+          <div class="admin-info-box">
+            <i class="fas fa-info-circle"></i>
+            <div>
+              <strong>Prossimamente disponibile</strong>
+              <p style="margin:4px 0 0;">Il modulo pagamenti verra attivato dopo la configurazione del backend e del gateway di pagamento scelto. Potrai gestire fatture, pagamenti ricorrenti, preventivi e incassi direttamente da qui.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Storico Pagamenti (placeholder) -->
+        <div class="admin-card">
+          <h3 style="margin-bottom:20px;"><i class="fas fa-history" style="color:var(--arancione); margin-right:8px;"></i> Storico Pagamenti</h3>
+          <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Data</th><th>Cliente</th><th>Descrizione</th><th>Importo</th><th>Metodo</th><th>Stato</th></tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="6" style="text-align:center; padding:40px; color:var(--grigio-300);">
+                <i class="fas fa-credit-card" style="font-size:2rem; display:block; margin-bottom:12px;"></i>
+                Lo storico pagamenti sara disponibile dopo l'attivazione del modulo
+              </td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+        <!-- Funzionalita previste -->
+        <div class="admin-card">
+          <h3 style="margin-bottom:20px;"><i class="fas fa-list-check" style="color:var(--arancione); margin-right:8px;"></i> Funzionalita Previste</h3>
+          <div class="admin-features-grid">
+            <div class="admin-feature-item">
+              <div class="admin-feature-icon"><i class="fas fa-file-invoice"></i></div>
+              <div>
+                <h4>Fatturazione</h4>
+                <p>Crea e invia fatture, preventivi e note di credito ai clienti</p>
+              </div>
+            </div>
+            <div class="admin-feature-item">
+              <div class="admin-feature-icon"><i class="fas fa-sync-alt"></i></div>
+              <div>
+                <h4>Pagamenti Ricorrenti</h4>
+                <p>Gestisci abbonamenti e contratti di manutenzione periodici</p>
+              </div>
+            </div>
+            <div class="admin-feature-item">
+              <div class="admin-feature-icon"><i class="fas fa-chart-line"></i></div>
+              <div>
+                <h4>Report Finanziari</h4>
+                <p>Dashboard con grafici su incassi, scadenze e previsioni</p>
+              </div>
+            </div>
+            <div class="admin-feature-item">
+              <div class="admin-feature-icon"><i class="fas fa-bell"></i></div>
+              <div>
+                <h4>Notifiche Scadenze</h4>
+                <p>Avvisi automatici per pagamenti in scadenza o scaduti</p>
+              </div>
+            </div>
+            <div class="admin-feature-item">
+              <div class="admin-feature-icon"><i class="fas fa-link"></i></div>
+              <div>
+                <h4>Link di Pagamento</h4>
+                <p>Genera link di pagamento da inviare via email o WhatsApp</p>
+              </div>
+            </div>
+            <div class="admin-feature-item">
+              <div class="admin-feature-icon"><i class="fas fa-download"></i></div>
+              <div>
+                <h4>Export CSV/PDF</h4>
+                <p>Esporta dati per il commercialista o per analisi interne</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================== LANDING PAGES ======================== -->
       <div class="admin-section" id="section-landing">
         <div class="admin-topbar">
           <h2>Landing Pages</h2>
           <button class="btn btn-primary" onclick="openEditor('landing')"><i class="fas fa-plus"></i> Nuova Landing</button>
         </div>
         <div class="admin-card">
+          <div class="admin-table-wrap">
           <table class="admin-table">
             <thead>
               <tr><th>Titolo</th><th>URL</th><th>Conversioni</th><th>Stato</th><th>Azioni</th></tr>
@@ -174,32 +565,11 @@
               <tr><td>Diagnosi Energetica Gratuita</td><td>/landing-diagnosi</td><td>8</td><td><span class="badge badge-warning">Bozza</span></td><td><button class="btn btn-outline" style="padding:6px 12px; font-size:0.75rem;">Modifica</button></td></tr>
             </tbody>
           </table>
+          </div>
         </div>
       </div>
 
-      <!-- MESSAGGI -->
-      <div class="admin-section" id="section-contatti">
-        <div class="admin-topbar">
-          <h2>Messaggi Ricevuti</h2>
-          <span style="color:var(--grigio-500);">47 totali — 3 da rispondere</span>
-        </div>
-        <div class="admin-card">
-          <table class="admin-table">
-            <thead>
-              <tr><th>Data</th><th>Nome</th><th>Azienda</th><th>Servizio</th><th>Stato</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>07/03/2026</td><td>Paolo Mantovani</td><td>Metalform SpA</td><td>Manutenzione</td><td><span class="badge badge-error">Nuovo</span></td></tr>
-              <tr><td>06/03/2026</td><td>Chiara Bortolotto</td><td>Alimentari Veneto Srl</td><td>Oil-Free</td><td><span class="badge badge-error">Nuovo</span></td></tr>
-              <tr><td>05/03/2026</td><td>Stefano Zago</td><td>Officine Zago</td><td>Noleggio</td><td><span class="badge badge-warning">In lavorazione</span></td></tr>
-              <tr><td>04/03/2026</td><td>Laura Piccolo</td><td>Farmaceutica Padovana</td><td>Diagnosi</td><td><span class="badge badge-success">Risposto</span></td></tr>
-              <tr><td>03/03/2026</td><td>Andrea Trevisan</td><td>Birrificio Euganeo</td><td>Generatore N2</td><td><span class="badge badge-success">Risposto</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- SEO -->
+      <!-- ======================== SEO ======================== -->
       <div class="admin-section" id="section-seo">
         <div class="admin-topbar">
           <h2>SEO e Indicizzazione</h2>
@@ -253,112 +623,12 @@
         </div>
       </div>
 
-      <!-- EDITOR MODAL -->
-      <div id="editorModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; padding:32px; overflow-y:auto;">
-        <div style="max-width:900px; margin:0 auto; background:var(--bianco); border-radius:12px; padding:32px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
-            <h2 id="editorTitle">Nuovo Contenuto</h2>
-            <button onclick="closeEditor()" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--grigio-500);">&times;</button>
-          </div>
-          <div class="form-group">
-            <label>Titolo</label>
-            <input type="text" placeholder="Inserisci il titolo...">
-          </div>
-          <div class="form-group">
-            <label>Slug URL</label>
-            <input type="text" placeholder="titolo-della-pagina">
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-            <div class="form-group">
-              <label>Categoria</label>
-              <select>
-                <option>Manutenzione</option>
-                <option>Guide</option>
-                <option>Efficienza</option>
-                <option>Normative</option>
-                <option>Novita</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Stato</label>
-              <select>
-                <option>Pubblicato</option>
-                <option>Bozza</option>
-                <option>Pianificato</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Immagine di Copertina (URL)</label>
-            <input type="url" placeholder="https://images.unsplash.com/...">
-          </div>
-          <div class="form-group">
-            <label>Meta Description</label>
-            <input type="text" placeholder="Descrizione SEO (max 160 caratteri)" maxlength="160">
-          </div>
-          <div class="form-group">
-            <label>Contenuto</label>
-            <div class="editor-toolbar">
-              <button onclick="document.execCommand('bold')"><b>B</b></button>
-              <button onclick="document.execCommand('italic')"><i>I</i></button>
-              <button onclick="document.execCommand('underline')"><u>U</u></button>
-              <button onclick="document.execCommand('insertUnorderedList')">Lista</button>
-              <button onclick="document.execCommand('formatBlock','','h2')">H2</button>
-              <button onclick="document.execCommand('formatBlock','','h3')">H3</button>
-              <button onclick="document.execCommand('createLink', false, prompt('URL:'))">Link</button>
-              <button onclick="document.execCommand('insertImage', false, prompt('URL immagine:'))">Immagine</button>
-            </div>
-            <div contenteditable="true" class="editor-area" style="border-radius:0 0 8px 8px;">
-              <p>Scrivi qui il contenuto dell'articolo...</p>
-            </div>
-          </div>
-          <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:24px;">
-            <button class="btn btn-outline" onclick="closeEditor()">Annulla</button>
-            <button class="btn btn-primary" onclick="closeEditor()"><i class="fas fa-save"></i> Salva e Pubblica</button>
-          </div>
-        </div>
-      </div>
-
     </main>
   </div>
 
-  <script>
-    function handleLogin(e) {
-      e.preventDefault();
-      const user = document.getElementById('loginUser').value;
-      const pass = document.getElementById('loginPass').value;
-      if (user === 'admin' && pass === 'admin') {
-        document.getElementById('loginScreen').style.display = 'none';
-        document.getElementById('adminPanel').style.display = 'block';
-      } else {
-        alert('Credenziali non valide. Usa: admin / admin');
-      }
-    }
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="admin-toast"></div>
 
-    function logout() {
-      document.getElementById('adminPanel').style.display = 'none';
-      document.getElementById('loginScreen').style.display = 'flex';
-    }
-
-    // Navigation
-    document.querySelectorAll('.admin-nav-item[data-section]').forEach(item => {
-      item.addEventListener('click', () => {
-        document.querySelectorAll('.admin-nav-item').forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
-        document.getElementById('section-' + item.dataset.section).classList.add('active');
-      });
-    });
-
-    function openEditor(type) {
-      const titles = { prodotto: 'Nuovo Prodotto', blog: 'Nuovo Articolo', landing: 'Nuova Landing Page' };
-      document.getElementById('editorTitle').textContent = titles[type] || 'Nuovo Contenuto';
-      document.getElementById('editorModal').style.display = 'block';
-    }
-
-    function closeEditor() {
-      document.getElementById('editorModal').style.display = 'none';
-    }
-  </script>
+  <script src="js/admin.js"></script>
 </body>
 </html>
