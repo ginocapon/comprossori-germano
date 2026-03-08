@@ -64,6 +64,48 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+// ============ MOBILE STICKY CTA BAR ============
+(function() {
+  var mobileCta = document.getElementById('mobileCta');
+  if (!mobileCta) return;
+  var shown = false;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 100 && !shown) {
+      mobileCta.classList.add('visible');
+      shown = true;
+    } else if (window.scrollY <= 100 && shown) {
+      mobileCta.classList.remove('visible');
+      shown = false;
+    }
+  });
+})();
+
+// ============ CHATBOT AUTO-OPEN (solo homepage) ============
+(function() {
+  var isHomepage = window.location.pathname === '/' ||
+                   window.location.pathname.endsWith('/index.html') ||
+                   window.location.pathname.endsWith('/index.htm') ||
+                   window.location.pathname === '';
+  if (!isHomepage) return;
+
+  var alreadyShown = sessionStorage.getItem('chatbotAutoOpened');
+  if (alreadyShown) return;
+
+  setTimeout(function() {
+    var chatWindow = document.getElementById('chatbot-window');
+    var chatToggle = document.getElementById('chatbot-toggle');
+    if (!chatWindow || chatWindow.classList.contains('open')) return;
+
+    chatWindow.classList.add('open');
+    if (chatToggle) chatToggle.classList.add('active');
+
+    // Aggiungi messaggio proattivo di consulenza
+    chatbotAddMessage('Ciao! Stai cercando un compressore o hai bisogno di assistenza? <strong>Offriamo una consulenza gratuita</strong> per trovare la soluzione ideale per la tua azienda. Scrivimi o scegli un argomento qui sotto!', false);
+
+    sessionStorage.setItem('chatbotAutoOpened', '1');
+  }, 3000);
+})();
+
 // ============ CHATBOT ============
 const chatbotResponses = {
   'servizi': 'Offriamo: vendita compressori, manutenzione e assistenza 24/7, noleggio a breve/lungo termine, progettazione impianti aria compressa, diagnosi energetica AirScan e ricambi originali. Visita la pagina <a href="servizi.html" style="color:var(--arancione);font-weight:600;">Servizi</a> per i dettagli!',
