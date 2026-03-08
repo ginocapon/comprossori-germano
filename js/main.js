@@ -88,6 +88,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                    window.location.pathname === '';
   if (!isHomepage) return;
 
+  // Auto-open solo su desktop e iPad, NON su mobile
+  var isMobile = window.innerWidth < 768;
+  if (isMobile) return;
+
   var alreadyShown = sessionStorage.getItem('chatbotAutoOpened');
   if (alreadyShown) return;
 

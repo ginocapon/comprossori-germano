@@ -1310,6 +1310,14 @@ p { margin-bottom: 1rem; }
   font-size: 1.4rem;
 }
 
+#chatbot-toggle .chatbot-toggle-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
 #chatbot-toggle:hover {
   background: var(--arancione-hover);
   transform: scale(1.08);
