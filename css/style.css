@@ -323,8 +323,12 @@ p { margin-bottom: 1rem; }
   z-index: 2;
   text-align: center;
   color: var(--bianco);
+  width: 100%;
   max-width: 900px;
   padding: 60px 24px;
+  margin: 0 auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-badge {
@@ -1224,7 +1228,11 @@ p { margin-bottom: 1rem; }
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 1024px) {
-  .hero h1 { font-size: 2.8rem; }
+  .hero h1 { font-size: 2.4rem; }
+  .hero-content-full { max-width: 700px; padding: 40px 32px; }
+  .hero-desc { font-size: 1.05rem; max-width: 90%; }
+  .hero-stats { gap: 30px; }
+  .hero-badge { font-size: 0.8rem; padding: 6px 16px; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .about-grid { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1260,9 +1268,15 @@ p { margin-bottom: 1rem; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .blog-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 2.2rem; }
-  .hero-desc { font-size: 1.05rem; }
-  .hero-stats { flex-direction: column; gap: 20px; align-items: center; }
+  .hero h1 { font-size: 1.8rem; line-height: 1.15; }
+  .hero-content-full { max-width: 100%; padding: 30px 20px; }
+  .hero-desc { font-size: 0.95rem; max-width: 100%; line-height: 1.6; }
+  .hero-badge { font-size: 0.75rem; padding: 6px 14px; }
+  .hero-buttons { gap: 12px; }
+  .hero-buttons .btn-lg { padding: 12px 24px; font-size: 0.95rem; }
+  .hero-stats { flex-direction: row; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .hero-stat-num { font-size: 2rem; }
+  .hero-stat-label { font-size: 0.75rem; }
   .about-features { grid-template-columns: 1fr; }
 
   .admin-sidebar {
