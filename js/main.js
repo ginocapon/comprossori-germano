@@ -64,6 +64,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+// ============ MOBILE STICKY CTA BAR ============
+(function() {
+  var mobileCta = document.getElementById('mobileCta');
+  if (!mobileCta) return;
+  var shown = false;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 100 && !shown) {
+      mobileCta.classList.add('visible');
+      shown = true;
+    } else if (window.scrollY <= 100 && shown) {
+      mobileCta.classList.remove('visible');
+      shown = false;
+    }
+  });
+})();
+
 // ============ CHATBOT AUTO-OPEN (solo homepage) ============
 (function() {
   var isHomepage = window.location.pathname === '/' ||
