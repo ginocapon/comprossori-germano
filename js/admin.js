@@ -74,7 +74,7 @@ function handleLogin(e) {
   e.preventDefault();
   var user = document.getElementById('loginUser').value;
   var pass = document.getElementById('loginPass').value;
-  if (user === 'admin' && pass === 'admin') {
+  if (user === 'admin' && pass === 'Patatina') {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('adminPanel').style.display = 'block';
     sessionStorage.setItem('crono_auth', '1');
