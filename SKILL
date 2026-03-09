@@ -1,8 +1,8 @@
 # SKILL KILLER - Prompt Operativo per righettoimmobiliare.it
 ### (Il nome e' ironico, ma il contenuto e' serissimo)
 
-> **Versione:** 1.6 - 7 Marzo 2026
-> **Ultimo aggiornamento Google verificato:** 7 Marzo 2026 (Core Update confermato + Engagement Reliability)
+> **Versione:** 1.7 - 9 Marzo 2026
+> **Ultimo aggiornamento Google verificato:** 9 Marzo 2026 (Core Update in rollout + GEO 50% query + GSC nuove feature)
 > **Prossima verifica consigliata:** Aprile 2026
 
 ---
@@ -188,6 +188,19 @@ SERP-STRATEGY.md                    - Copia dettagliata strategia SERP (deprecat
 - **GEO content converte 4.4x** vs SEO tradizionale ($3.71 return per $1 investito)
 - **llms.txt** - Nuovo standard emergente per guidare AI bots (come robots.txt ma per LLM)
 - **Ranking volatility estrema** - Cali organici 20-35% riportati da molti siti da febbraio-marzo 2026
+- **GEO 50% query nel 2026** - AI search ora stimate al 50% delle query mondiali (aggiornamento 9 marzo), Gartner prevede calo 25% volume ricerche tradizionali
+- **Cloudflare blocca AI bots di default** - ATTENZIONE: Cloudflare ha cambiato configurazione default bloccando AI crawlers — verificare se attivo
+- **Brand mentions senza link** - Le menzioni del brand contano per AI visibility anche senza backlink
+- **AEO assorbito da GEO** - Answer Engine Optimization ora largamente incluso nel GEO (voice queries passano per AI)
+- **GEO tools +43% citation rate** - Brand con strumenti GEO dedicati vedono 43% piu' citazioni AI e 31% migliore accuratezza menzioni
+- **GSC Social Channels** - Canali social ora visibili in Search Console Insights (esperimento in rollout)
+- **GSC Weekly/Monthly Views** - Nuove viste settimanali e mensili nel Performance report
+- **GSC Video & Podcast Performance** - Report dedicati per video chapters e podcast episodes (febbraio 2026)
+- **GSC Predictive Features in arrivo** - Prossimamente: raccomandazioni AI, notifiche degradazione contenuti, previsioni visibilita'
+- **CWV Alert Thresholds** - Best practice: impostare alert all'80% delle soglie (INP >160ms, LCP >2.0s, CLS >0.08)
+- **CWV 28-day window** - I dati field in Search Console usano finestra 28 giorni — dopo fix, attendere 28gg per vedere miglioramenti
+- **Core Update Winners/Losers** - Vincono: contenuti approfonditi e ben ricercati. Perdono: contenuto AI massivo, recensioni prodotto scarse
+- **McKinsey stima 75% query AI entro 2028** — la transizione accelera
 
 ### GEO — Generative Engine Optimization (NUOVO 2026)
 
@@ -196,9 +209,12 @@ SERP-STRATEGY.md                    - Copia dettagliata strategia SERP (deprecat
 > il GEO punta a essere **la fonte citata** nelle risposte AI.
 
 **Perche' e' critico per un'agenzia immobiliare locale:**
-- Il 35% delle ricerche nel 2026 passa per assistenti AI
+- Il **50% delle ricerche nel 2026** passa per assistenti AI (aggiornato 9 marzo — era 35-40%)
+- Gartner prevede **calo 25% volume ricerche tradizionali** entro fine 2026
+- McKinsey prevede **75% query via AI entro 2028**
 - Le AI con dati strutturati hanno **300% di accuratezza in piu'** nel citare un sito
 - Domande tipo "miglior agenzia immobiliare Padova" → le AI rispondono citando fonti strutturate
+- **ATTENZIONE Cloudflare:** se usato, verificare che non blocchi AI bots (default cambiato nel 2026)
 
 **Regole GEO per ogni contenuto:**
 1. **Frasi dichiarative** nelle prime 2 righe di ogni sezione (le AI estraggono da li')
@@ -586,6 +602,25 @@ SERP-STRATEGY.md                    - Copia dettagliata strategia SERP (deprecat
 ---
 
 ## CHANGELOG AGGIORNAMENTI
+
+### v1.7 - 9 Marzo 2026 (Verifica Aggiornamenti Google — Sessione comprossori-germano)
+- **5 ricerche Google obbligatorie eseguite** — confronto completo con v1.6
+- **GEO aggiornato al 50%** — AI search ora stimate al 50% delle query mondiali (era 40% nella v1.6)
+- **Gartner: -25% volume ricerche tradizionali** previsto entro fine 2026
+- **McKinsey: 75% query AI entro 2028** — trend in forte accelerazione
+- **ALERT Cloudflare** — default configuration ora blocca AI bots (verificare!)
+- **Brand mentions senza link** contano per AI visibility — nuova tattica GEO documentata
+- **AEO assorbito da GEO** — non piu' discipline separate
+- **GEO tools: +43% citation rate, +31% accuratezza** — dati quantitativi aggiunti
+- **GSC nuove feature documentate:**
+  - Social Channels in Search Console Insights
+  - Weekly/Monthly Performance Views
+  - Enhanced Video & Podcast Search Performance (feb 2026)
+  - Predictive features in arrivo (raccomandazioni AI, notifiche degradazione)
+- **CWV best practice alert thresholds** — 80% delle soglie Google (INP >160ms, LCP >2.0s, CLS >0.08)
+- **CWV 28-day field data window** — documentato tempo necessario per vedere miglioramenti dopo fix
+- **Core Update dettagli** — vincitori (contenuti approfonditi) e perdenti (AI massivo, recensioni scarse)
+- **NOTA:** Questo file si trova nel repo comprossori-germano ma fa riferimento a righettoimmobiliare.it
 
 ### v1.6 - 7 Marzo 2026 (Fix Audit + FAQ Mutuo Dedicata)
 - **GeoCoordinates aggiunto a landing-mutuo.html** — mancava nello schema LocalBusiness
