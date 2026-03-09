@@ -10,9 +10,86 @@
   <meta property="og:description" content="Vendita, manutenzione, noleggio compressori e progettazione impianti aria compressa.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Crono Compressor",
+    "url": "https://www.cronocompressor.it",
+    "telephone": "+39-049-555-1234",
+    "address": {"@type": "PostalAddress", "streetAddress": "Via dell'Industria, 42", "addressLocality": "Padova", "postalCode": "35100", "addressRegion": "PD", "addressCountry": "IT"},
+    "geo": {"@type": "GeoCoordinates", "latitude": 45.4064, "longitude": 11.8768},
+    "sameAs": ["https://www.facebook.com/cronocompressor", "https://www.linkedin.com/company/cronocompressor", "https://www.instagram.com/cronocompressor"]
+  }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.cronocompressor.it/"},
+      {"@type": "ListItem", "position": 2, "name": "Servizi", "item": "https://www.cronocompressor.it/servizi"}
+    ]
+  }
+  </script>
+
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quali servizi offre Crono Compressor per i compressori industriali?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Crono Compressor offre vendita compressori dei migliori marchi internazionali, manutenzione programmata e straordinaria con contratti fino a 5 anni, noleggio a breve e lungo termine, progettazione impianti aria compressa chiavi in mano, diagnosi energetica AirScan e ricambi originali con consegna in 24-48 ore."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto costa la manutenzione di un compressore industriale?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il costo della manutenzione dipende dal tipo e dalla potenza del compressore. Crono Compressor offre contratti di manutenzione personalizzati fino a 5 anni con costi certi e programmati. La manutenzione regolare permette di risparmiare il 25-35% sui consumi energetici, ripagando ampiamente l'investimento."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "In quanto tempo intervenite in caso di emergenza?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il team di emergenza di Crono Compressor interviene in media entro 4 ore dalla chiamata, con assistenza tecnica disponibile 24/7. Per il noleggio di emergenza, la consegna e installazione possono avvenire anche in 3 ore."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Come funziona la diagnosi energetica AirScan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La diagnosi AirScan monitora ogni compressore per una settimana tramite pinze amperometriche, senza interrompere la produzione. Il report identifica sprechi e perdite, con risparmio medio documentato del 25-35% sui costi energetici annuali e ROI di 6-12 mesi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Offrite il noleggio di compressori industriali?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si, Crono Compressor offre noleggio a breve termine (giorni/settimane) per emergenze e fermi programmati, e a lungo termine (mesi/anni) con canoni competitivi. Il servizio include trasporto, installazione, manutenzione e assistenza tecnica completa."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -228,6 +305,43 @@
           <h3>Supporto Tecnico</h3>
           <p>I nostri tecnici vi guidano nell'identificazione del ricambio corretto e, se necessario, si occupano della sostituzione in loco.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROFONDIMENTI BLOG -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="overline">Approfondimenti</span>
+        <h2>Dal Nostro Blog Tecnico</h2>
+        <p>Guide e articoli correlati ai nostri servizi per aiutarvi a prendere decisioni informate.</p>
+      </div>
+      <div class="blog-grid">
+        <a href="blog/manutenzione-compressore-guida.html" class="blog-card reveal">
+          <div class="blog-card-body">
+            <div class="blog-card-meta"><span class="category">Manutenzione</span><span>5 Marzo 2026</span></div>
+            <h3>Guida Completa alla Manutenzione del Compressore Industriale</h3>
+            <p>Intervalli, checklist e normative obbligatorie D.lgs 81/08.</p>
+          </div>
+        </a>
+        <a href="blog/risparmio-energetico-aria-compressa.html" class="blog-card reveal">
+          <div class="blog-card-body">
+            <div class="blog-card-meta"><span class="category">Efficienza</span><span>20 Febbraio 2026</span></div>
+            <h3>Come Risparmiare il 30% sui Costi Energetici</h3>
+            <p>Strategie pratiche per ottimizzare il consumo del vostro impianto.</p>
+          </div>
+        </a>
+        <a href="blog/compressore-oil-free-vs-lubrificato.html" class="blog-card reveal">
+          <div class="blog-card-body">
+            <div class="blog-card-meta"><span class="category">Guide</span><span>28 Febbraio 2026</span></div>
+            <h3>Oil-Free vs Lubrificato: Quale Scegliere?</h3>
+            <p>Confronto dettagliato tra le due tecnologie per ogni settore.</p>
+          </div>
+        </a>
+      </div>
+      <div style="text-align:center; margin-top:32px;">
+        <a href="blog.html" class="btn btn-dark"><i class="fas fa-newspaper"></i> Tutti gli Articoli</a>
       </div>
     </div>
   </section>

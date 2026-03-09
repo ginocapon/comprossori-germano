@@ -8,9 +8,75 @@
   <link rel="canonical" href="https://www.cronocompressor.it/chi-siamo">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Crono Compressor",
+    "url": "https://www.cronocompressor.it",
+    "telephone": "+39-049-555-1234",
+    "address": {"@type": "PostalAddress", "streetAddress": "Via dell'Industria, 42", "addressLocality": "Padova", "postalCode": "35100", "addressRegion": "PD", "addressCountry": "IT"},
+    "geo": {"@type": "GeoCoordinates", "latitude": 45.4064, "longitude": 11.8768},
+    "sameAs": ["https://www.facebook.com/cronocompressor", "https://www.linkedin.com/company/cronocompressor", "https://www.instagram.com/cronocompressor"]
+  }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.cronocompressor.it/"},
+      {"@type": "ListItem", "position": 2, "name": "Chi Siamo", "item": "https://www.cronocompressor.it/chi-siamo"}
+    ]
+  }
+  </script>
+
+  <!-- Person Schema — Team -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Marco Ferretti",
+      "jobTitle": "Fondatore e CEO",
+      "worksFor": {"@type": "Organization", "name": "Crono Compressor"},
+      "description": "Fondatore di Crono Compressor, oltre 50 anni di esperienza nel settore dei compressori industriali e dell'aria compressa.",
+      "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=280&h=280&fit=crop&crop=face"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Alessandro Rossi",
+      "jobTitle": "Direttore Tecnico",
+      "worksFor": {"@type": "Organization", "name": "Crono Compressor"},
+      "description": "20 anni di esperienza nella manutenzione e assistenza compressori industriali. Coordina il team di 25 tecnici."
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Roberto Gallo",
+      "jobTitle": "Direttore Commerciale",
+      "worksFor": {"@type": "Organization", "name": "Crono Compressor"},
+      "description": "Esperto in soluzioni personalizzate per grandi impianti industriali di aria compressa."
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Elena Martini",
+      "jobTitle": "Energy Manager",
+      "worksFor": {"@type": "Organization", "name": "Crono Compressor"},
+      "description": "Specialista in audit energetici e ottimizzazione dei consumi per impianti di aria compressa."
+    }
+  ]
+  </script>
 </head>
 <body>
   <nav class="navbar" id="navbar">
