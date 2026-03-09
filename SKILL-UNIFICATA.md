@@ -1,9 +1,9 @@
 # SKILL UNIFICATA — Righetto Immobiliare
 ## Prompt Operativo Master Consolidato
 
-> **Versione:** 1.4 — 8 Marzo 2026 (4 loop di raffinamento completati)
+> **Versione:** 1.6 — 9 Marzo 2026 (5 loop di raffinamento completati)
 > **Origine:** Fusione e razionalizzazione di SERP-STRATEGY.md (v. 4 marzo) + SKILL-KILLER.md (v1.6 - 7 marzo)
-> **Ultimo aggiornamento Google verificato:** 8 Marzo 2026
+> **Ultimo aggiornamento Google verificato:** 9 Marzo 2026
 > **Prossima verifica consigliata:** Aprile 2026
 
 ---
@@ -169,12 +169,29 @@ js/scroll-reveal.js                 - Animazioni scroll
 - **AI Mode data** contato in Performance Report di Search Console
 - **Google review policies aggiornate** — Rischio perdita recensioni
 - **Ranking volatility estrema** — Cali 20-35% riportati da molti siti
+- **February 2026 Discover Core Update** — Completato 27 febbraio (durato 22 giorni dal 5 feb). Primo core update specifico per Google Discover (non web search)
+- **Local relevance signals rafforzati** — Google rafforza interpretazione intent locale: comunicare chiaramente zona e area servizi e' ancora piu' critico
+- **AI content scrutiny** — Contenuti AI massivi senza insight umano penalizzati nel ranking
+- **GSC AI Configuration** — Tool AI-powered ora live globalmente: analisi SEO con linguaggio naturale
+- **GSC Branded Queries Filter** — Separazione automatica query branded vs non-branded
+- **GSC Custom Annotations** — Annotazioni personalizzate nei Performance report per tracciare eventi
+- **GSC Weekly/Monthly Views** — Nuove viste settimanali/mensili nel Performance report
+- **GSC Social Channels** — Canali social integrati in Search Console Insights
+- **GSC Query Groups** — Raggruppamento query simili con performance aggregate
+- **43% siti fallisce INP** — INP e' la metrica CWV piu' comunemente fallita nel 2026
+- **GEO recency bias** — Contenuti >3 mesi vedono calo drastico citazioni AI. Aggiornare contenuti cornerstone almeno trimestralmente
+- **GEO: prime 200 parole critiche** — AI valuta rilevanza pagina principalmente dal contenuto iniziale
+- **GEO: overlap Google-AI sceso sotto 20%** — Solo <10% fonti citate da ChatGPT/Gemini/Copilot sono anche in top 10 Google
+- **Cloudflare blocca AI bots di default** — Verificare che il proprio hosting non blocchi involontariamente crawler AI
+- **Structured data semplificati** — Google rimuove supporto per practice problems, Dataset markup e altri tipi poco usati
 
 ### 4.5 GEO — Generative Engine Optimization
 
 > Il 58% dei consumatori nel 2026 usa AI al posto dei motori tradizionali.
-> ChatGPT 800M utenti/settimana, Gemini 750M/mese.
+> ChatGPT 800M utenti/settimana, Gemini 750M/mese. AI Overviews in almeno 16% delle ricerche.
 > GEO converte 4.4x vs SEO tradizionale ($3.71 return per $1).
+> Gartner: volume ricerche tradizionali -25% entro 2026. McKinsey: AI powera 75% query entro 2028.
+> Brand using GEO tools: +43% citation rate, +31% brand mention accuracy.
 
 **Regole GEO per ogni contenuto:**
 1. **Frasi dichiarative** nelle prime 2 righe di ogni sezione — le AI estraggono da li'
@@ -547,6 +564,19 @@ js/scroll-reveal.js                 - Animazioni scroll
 ---
 
 ## 12. CHANGELOG
+
+### v1.6 - 9 Marzo 2026 (Verifica Aggiornamenti Google — Sessione Automatica)
+- **Verifica web completata** — 4 ricerche obbligatorie sezione 1.1 eseguite
+- **Sezione 4.4 ampliata** — Aggiunte 16 novita' rispetto alla versione precedente
+- **February 2026 Discover Core Update** — Primo core update specifico per Discover (completato 27 feb)
+- **GSC nuove funzionalita'** — AI Configuration, Branded Queries Filter, Custom Annotations, Weekly/Monthly Views, Social Channels, Query Groups
+- **Local relevance signals** — Google rafforza segnali locali nel March 2026 Core Update
+- **AI content scrutiny** — Penalizzazione contenuti AI massivi senza insight umano
+- **GEO aggiornamenti** — Recency bias (<3 mesi), prime 200 parole critiche, overlap Google-AI sotto 20%
+- **Cloudflare default block** — Nuova nota su Cloudflare che blocca AI bots di default
+- **43% siti fallisce INP** — Dato aggiornato sulla metrica CWV piu' problematica
+- **Statistiche GEO aggiornate** — Gartner -25% ricerche tradizionali, McKinsey 75% AI entro 2028
+- **Structured data semplificati** — Google rimuove tipi poco usati (practice problems, Dataset)
 
 ### v1.5 - 8 Marzo 2026 (Implementazione Completa TODO)
 - **CREATI 4 contenuti:** blog-tempi-vendita-casa-padova, zona-vigonza, zona-abano-terme, zona-selvazzano
